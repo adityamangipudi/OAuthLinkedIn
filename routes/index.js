@@ -3,14 +3,14 @@ var config = require('../config.json');
 
 var router = express.Router();
 
-
-
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
+
+const base_url = 'https://www.linkedin.com/uas/oauth2/authorization';
 
 function middleware(req, res, next){
   passport.use(new LinkedInStrategy({
-    clientID: LINKEDIN_KEY,
-    clientSecret: LINKEDIN_SECRET,
+    clientID: config.api_key,
+    clientSecret: config.secret_key,
     callbackURL: "http://127.0.0.1:3000/auth/linkedin/callback",
     scope: ['r_emailaddress', 'r_basicprofile'],
   }, function(accessToken, refreshToken, profile, done) {
