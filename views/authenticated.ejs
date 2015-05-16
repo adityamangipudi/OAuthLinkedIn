@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title><%=title%></title>
+    <title>Logged In</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
 
     <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
@@ -12,9 +12,8 @@
 <body>
 
 
-    <h1>Welcome to <%=title%></h1>
-
-    <a href="/auth/linkedin" class="btn btn-primary">Login With LinkedIn</a>
+<h1>Welcome to OAuth, <%= user %></h1>
+<a href="/auth/logout" class="btn btn-primary">Logout from LinkedIn</a>
 
 
 
