@@ -4,15 +4,14 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var config = require('./config.json');
-var passport = require('passport');
-var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
+//var config = require('./config.json');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+var login = require('./routes/login');
 var app = express();
 
-// view engine setup
+// view engine setupwww
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
@@ -26,8 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', routes);
 app.use('/users', users);
-//app.use(passport.initialize());
-
+app.use('/auth', login);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   var err = new Error('Not Found');
@@ -59,12 +57,4 @@ app.use(function(err, req, res, next) {
   });
 });
 
-/*app.get('/auth/linkedin',
-    passport.authenticate('linkedin'),
-    function(req, res){
-      console.log('HERE?');
-      // The request will be redirected to LinkedIn for authentication, so this
-      // function will not be called.
-    });
-*/
 module.exports = app;
