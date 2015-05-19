@@ -46,7 +46,7 @@ passport.use(new LinkedInStrategy({
         // to associate the LinkedIn account with a user record in your database,
         // and return that user instead.
 
-        //console.log(profile);
+        console.log(profile);
         profileG=profile;
         return done(null, profile);
     });
@@ -69,6 +69,18 @@ router.get('/authenticated', function(req, res){
     console.log('req-user', req.session);
     res.render('authenticated', {user:profileG.displayName, profile: profileG.photos[0]});
 });
+
+//gets profile to send to user
+router.get('/profile', function(req, res){
+    res.send(profileG['_json']);
+});
+
+//edits and makes changes to user, maybe put?
+router.post('/profile', function(req, res){
+    console.log(req.body); //profile obj
+    res.send({message:'Mission accomplished.'})
+});
+
 router.get('/logout', function(req, res){
         console.log('logging out', req.session);
         req.logout();

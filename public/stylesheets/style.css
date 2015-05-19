@@ -1,8 +1,41 @@
+
+
 body {
-  padding: 50px;
+  display: inline-block;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
 }
+
+img.thumbnails{
+  margin: 1em;
+  height: 100px;
+  width: 100px;
+}
+
+h3{
+  display:inline;
+}
+
+hr.navhr{
+  margin-top: 0;
+}
+
+ul.nav{
+  float:right;
+}
+
+/* delete from here */
+div.row{
+  position:relative;
+}
+
+div.navbar-right{
+  position:absolute;
+  bottom: 0;
+  right: 0;
+}
+
+/* to here  .notForAnts{ font-size: 1.5em; }*/
