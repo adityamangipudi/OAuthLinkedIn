@@ -3,24 +3,33 @@
 <head>
     <title>Logged In</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
-    <script src='/javascripts/jquery.js' ></script>
-    <script src='/javascripts/bootstrap.js' ></script>
-    <script src='/javascripts/angular.js'></script>
-    <script src='/javascripts/angular-route.js'></script>
+    <link rel='stylesheet' href='/css/bootstrap.css' />
+    <script src='/jquery.js' ></script>
+    <script src='/js/bootstrap.js' ></script>
+    <script src='/angular.js'></script>
+    <script src='/angular-route.js'></script>
     <script src='/javascripts/Authenticate.js' ></script>
     <script src='/javascripts/angularModule.js'></script>
     <script>
         var myApp = angular.module('myApp', ['ngRoute', 'myApp.menu']);
         myApp.config(function ($routeProvider) {
-            $routeProvider.when('/auth/authenticated#/profile', {
-                templateUrl: '/partials/_profile.html',
-                controller: 'MenuController'
+            $routeProvider.when('/profile', {
+                templateUrl: '/partials/_profile.html'//,
+                //controller: 'MenuController'
+            }).when('/edit',{
+                templateUrl: '/partials/_edit.html'//,
+                //controller: 'MenuController'
             }).otherwise({
-                redirectTo: ''
+                redirectTo: '/'
             });
         });
     </script>
+    <script type="text/javascript" src="//platform.linkedin.com/in.js">
+        api_key: <%= key %>
+//        onLoad:    onLinkedInLoad
+        authorize: true
+    </script>
+
 </head>
 <body ng-controller="MenuController">
 
@@ -32,16 +41,16 @@
     <div class=" col-md-4 navbar-right">
         <ul class = "nav nav-tabs">
             <li class="active">
-                <a href="#">Home</a>
+                <a id="mainNav" href="#" ng-click = "getMain()">Home</a>
             </li>
             <li>
-                <a href='#profile' ng-click= "getProfile()" >Profile</a>
+                <a id="profileNav" href='#profile' ng-click= "getProfile()" >Profile</a>
             </li>
             <li>
-                <a href="#edit" ng-click = "editProfile()">Edit</a>
+                <a id="editNav" href="#edit" ng-click = "editProfile()">Edit</a>
             </li>
             <li>
-                <a href="/auth/logout">Logout</a>
+                <a ng-click = "loggingOut()" >Logout</a> <!--href="/auth/logout" -->
             </li>
         </ul>
     </div>
@@ -49,27 +58,5 @@
 <hr class = 'navhr'>
 
 <div ng-view></div>
-
-<div id = 'editProfile' class = 'modal fade'>
-    <div class = 'modal-dialog'>
-        <div class = 'modal-content'>
-            <div class = 'modal-header'>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Edit Profile</h4>
-            </div>
-            <div class = 'modal-body notForAnts'>
-                <form id = "leForm" name = 'leForm' ng-submit = postProfile()>
-                    <p>Firm: <input type="text" ng-model = 'profile.firm' required></p>
-                    <p>Industries: <input type="text" ng-model = 'profile.industries'required></p>
-                    <p>External Links: <input type="text" ng-model = 'profile.links' required></p>
-                    <p style = "vertical-align: top;">Description:
-                        <textarea style="resize: none; width: 50%;" ng-model = 'profile.description' required></textarea></p>
-                    <input type="submit" id="submit" class = "btn btn-primary" value="Submit" />
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
 </body>
 </html>

@@ -67,7 +67,7 @@ router.get('/linkedin/callback',
 router.get('/authenticated', function(req, res){
     //console.log('req.user', req.session.user);
     console.log('req-user', req.session);
-    res.render('authenticated', {user:profileG.displayName, profile: profileG.photos[0]});
+    res.render('authenticated', {user:profileG.displayName, profile: profileG.photos[0], key: config.api_key});
 });
 
 //gets profile to send to user
